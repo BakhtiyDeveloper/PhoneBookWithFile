@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace PhoneBookWithFile.Services
 {
@@ -15,25 +17,43 @@ namespace PhoneBookWithFile.Services
             EnsureFileExists();
         }
 
-        public void ClearFile() 
+        public void ClearFile()
         {
             File.WriteAllText(filePath, string.Empty);
         }
 
-        public string AddNameAndNumber(string name, string number) 
+        public string AddNameAndNumber(string nameAndNumber)
         {
-            string space = " ";
             string line = "\n";
-            File.AppendAllText(filePath, name + space + number + line);
-            return name + number;
+            File.AppendAllText(filePath, nameAndNumber + line);
+
+            return nameAndNumber;
         }
-        
-        public void ReadFile() 
+
+        public void RemoveNameAndNumber(string nameAndNumber)
+        {
+            List<string> lines = File.ReadAllLines(filePath).ToList();
+
+            string lineToRemove = nameAndNumber;
+
+            lines.Remove(lineToRemove);
+
+            File.WriteAllLines(filePath, lines);
+        }
+
+        public void ReplaceNumberAndName(string nameAndNumber)
+        {
+            RemoveNameAndNumber(nameAndNumber);
+            AddNameAndNumber(nameAndNumber);
+
+        }
+
+        public string ReadFile()
         {
             string readText = File.ReadAllText(filePath);
-            Console.WriteLine(readText);            
-        } 
-
+            Console.WriteLine(readText);
+            return readText;
+        }
         private static void EnsureFileExists()
         {
             bool isFilePresent = File.Exists(filePath);

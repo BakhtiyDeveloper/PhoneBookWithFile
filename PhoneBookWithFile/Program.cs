@@ -1,5 +1,4 @@
 ﻿using PhoneBookWithFile.Services;
-using System;
 
 namespace PhoneBookWithFile
 {
@@ -7,19 +6,31 @@ namespace PhoneBookWithFile
     {
         static void Main(string[] args)
         {
-            FileService fileService = new FileService();
 
-            //fileService.ClearFile();
+            FileService fileservice = new FileService();
 
-            Console.Write("Enter your name: ");
-            string userName = Console.ReadLine();
+            //fileservice.ClearFile();
+            /*Console.WriteLine("Ogoxlantirish : ism va raqam formatini to'g'ri yozing; (Sherzod +998918285636)");
+            Console.Write("Ism va raqamni kiriting :");
 
-            Console.Write("Enter your phoneNumber: ");
-            string userPhoneNumber = Console.ReadLine();
-
-            fileService.AddNameAndNumber(userName, userPhoneNumber);
+            string nameAndNumber = Console.ReadLine();
 
 
+
+            fileservice.AddNameAndNumber(nameAndNumber);*/
+
+            fileservice.ReadFile();
+
+            // fileservice.ReadFile().ToList().Sort();
+
+            /*Console.WriteLine("qaysi contactni o'chirishni istaysiz :(Sherzod +998918285636)");
+
+            string nameAndNumber = Console.ReadLine();
+            
+            fileservice.RemoveNameAndNumber(nameAndNumber);
+            Console.WriteLine("\n \tyangi phonebook:\n");
+            fileservice.ReadFile();*/
         }
+
     }
 }
