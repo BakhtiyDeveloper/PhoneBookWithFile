@@ -1,7 +1,9 @@
-﻿using System;
+﻿using PhoneBookWithFile.Services;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
 
 namespace PhoneBookWithFile.Services
 {
@@ -62,6 +64,11 @@ namespace PhoneBookWithFile.Services
             {
                 File.Create(filePath).Close();
             }
+        }
+
+        void IFileService.AddName(string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

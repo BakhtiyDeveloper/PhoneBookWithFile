@@ -2,6 +2,6 @@
 {
     internal interface IFileService
     {
-
+        void AddName(string name);
     }
 }

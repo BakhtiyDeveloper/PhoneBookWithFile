@@ -1,4 +1,6 @@
 ﻿using PhoneBookWithFile.Services;
+using System;
+using System.Linq;
 
 namespace PhoneBookWithFile
 {
@@ -6,31 +8,62 @@ namespace PhoneBookWithFile
     {
         static void Main(string[] args)
         {
-
             FileService fileservice = new FileService();
+            LoggingService logger = new LoggingService();
 
-            //fileservice.ClearFile();
-            /*Console.WriteLine("Ogoxlantirish : ism va raqam formatini to'g'ri yozing; (Sherzod +998918285636)");
-            Console.Write("Ism va raqamni kiriting :");
+            Console.WriteLine("Welcome to our Phone-Book project !!!");
 
-            string nameAndNumber = Console.ReadLine();
+            bool isExit = true;
+            try
+            {
+                while (isExit)
+                {
+                    logger.LoggerMenu();
+                    string userChoose = Console.ReadLine();
 
-
-
-            fileservice.AddNameAndNumber(nameAndNumber);*/
-
-            fileservice.ReadFile();
-
-            // fileservice.ReadFile().ToList().Sort();
-
-            /*Console.WriteLine("qaysi contactni o'chirishni istaysiz :(Sherzod +998918285636)");
-
-            string nameAndNumber = Console.ReadLine();
-            
-            fileservice.RemoveNameAndNumber(nameAndNumber);
-            Console.WriteLine("\n \tyangi phonebook:\n");
-            fileservice.ReadFile();*/
+                    switch (userChoose)
+                    {
+                        case "1":
+                            fileservice.ReadFile().ToList().Sort();
+                            logger.LoggerForAdd();
+                            string nameAndNumber = Console.ReadLine();
+                            fileservice.AddNameAndNumber(nameAndNumber);
+                            nameAndNumber = "";
+                            break;
+                        case "2":
+                            fileservice.ReadFile().ToList().Sort();
+                            logger.LoggerForRemove();
+                            nameAndNumber = Console.ReadLine();
+                            fileservice.RemoveNameAndNumber(nameAndNumber);
+                            break;
+                        case "3":
+                            fileservice.ReadFile().ToList().Sort();
+                            break;
+                        case "4":
+                            Console.WriteLine("Warning... fileni o'chirishga rozimisan : yes/no");
+                            string chooseYesOrno = Console.ReadLine();
+                            if (chooseYesOrno.ToLower() == "yes")
+                            {
+                                fileservice.ClearFile();
+                            }
+                            else
+                            {
+                                Console.Write("Fileni o'chirmadingmi ? ");
+                            }
+                            break;
+                        case "5":
+                            isExit = false;
+                            break;
+                        default:
+                            Console.WriteLine("");
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.LoggerExcepion(ex.Message);
+            }
         }
-
     }
 }
