@@ -35,11 +35,8 @@ namespace PhoneBookWithFile.Services
         public void RemoveNameAndNumber(string nameAndNumber)
         {
             List<string> lines = File.ReadAllLines(filePath).ToList();
-
             string lineToRemove = nameAndNumber;
-
             lines.Remove(lineToRemove);
-
             File.WriteAllLines(filePath, lines);
         }
 
@@ -47,13 +44,13 @@ namespace PhoneBookWithFile.Services
         {
             RemoveNameAndNumber(nameAndNumber);
             AddNameAndNumber(nameAndNumber);
-
         }
 
         public string ReadFile()
         {
             string readText = File.ReadAllText(filePath);
             Console.WriteLine(readText);
+            
             return readText;
         }
         private static void EnsureFileExists()
