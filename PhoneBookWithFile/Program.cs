@@ -40,7 +40,7 @@ namespace PhoneBookWithFile
                             fileservice.ReadFile().ToList().Sort();
                             break;
                         case "4":
-                            Console.WriteLine("Warning... fileni o'chirishga rozimisan : yes/no");
+                            Console.WriteLine("Warning!!! Do you agree to delete the file: yes/no");
                             string chooseYesOrno = Console.ReadLine();
                             if (chooseYesOrno.ToLower() == "yes")
                             {
@@ -48,7 +48,7 @@ namespace PhoneBookWithFile
                             }
                             else
                             {
-                                Console.Write("Fileni o'chirmadingmi ? ");
+                                Console.Write("You did the right thing by not deleting the file!!!");
                             }
                             break;
                         case "5":
