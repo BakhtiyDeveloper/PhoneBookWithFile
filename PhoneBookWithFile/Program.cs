@@ -31,15 +31,18 @@ namespace PhoneBookWithFile
                             nameAndNumber = "";
                             break;
                         case "2":
+                            Console.Clear();
                             fileservice.ReadFile().ToList().Sort();
                             logger.LoggerForRemove();
                             nameAndNumber = Console.ReadLine();
                             fileservice.RemoveNameAndNumber(nameAndNumber);
                             break;
                         case "3":
+                            Console.Clear();
                             fileservice.ReadFile().ToList().Sort();
                             break;
                         case "4":
+                            Console.Clear();
                             Console.WriteLine("Warning!!! Do you agree to delete the file: yes/no");
                             string chooseYesOrno = Console.ReadLine();
                             if (chooseYesOrno.ToLower() == "yes")

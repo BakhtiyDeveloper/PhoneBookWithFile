@@ -2,7 +2,7 @@
 
 ## This project creates a simple and convenient interface for managing the phone book. Users can add, delete, view and clear the file of their contacts.
 
------------------------------------------------
+---------------------------------------------------------------------------
 
 ### Project structure.
 
@@ -159,5 +159,5 @@ public void LoggerExcepion(string message)
 ```
 4. Result to GIF.
 
-
+![Result to GIF](/PhoneBookWithFile/Rusult%20to%20GIF/result%20gif.gif)
 
