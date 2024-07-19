@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 
 namespace PhoneBookWithFile.Services
 {
-    internal class FileService : IFilService
+    internal class FileService : IFileService
     {
         private const string filePath = "../../../phoneBook.txt";
         private ILoggingService loggingService;
@@ -34,6 +35,11 @@ namespace PhoneBookWithFile.Services
             return nameAndNumber;
         }
 
+        public string ReadFile()
+        {
+            throw new NotImplementedException();
+        }
+
         public void RemoveNameAndNumber(string nameAndNumber)
         {
             List<string> lines = File.ReadAllLines(filePath).ToList();
@@ -49,9 +55,5 @@ namespace PhoneBookWithFile.Services
         }
 
         
-    }
-
-    internal interface IFilService
-    {
     }
 }

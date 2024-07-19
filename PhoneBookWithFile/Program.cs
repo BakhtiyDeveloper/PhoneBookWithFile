@@ -8,8 +8,8 @@ namespace PhoneBookWithFile
     {
         static void Main(string[] args)
         {
-            FileService fileservice = new FileService();
-            LoggingService logger = new LoggingService();
+            ILoggingService logger = new LoggingService();
+            IFileService fileservice = new FileService();
 
             Console.WriteLine("Welcome to our Phone-Book project !!!");
 
@@ -21,6 +21,7 @@ namespace PhoneBookWithFile
                     logger.LoggerMenu();
                     string userChoose = Console.ReadLine();
 
+                    
                     switch (userChoose)
                     {
                         case "1":

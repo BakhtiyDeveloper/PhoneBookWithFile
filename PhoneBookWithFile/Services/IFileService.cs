@@ -2,13 +2,13 @@
 {
     internal interface IFileService
     {
-        public void AddNameAndNumber(string nameAndNumber);
+        void AddNameAndNumber(string nameAndNumber);
 
-        public void RemoveNameAndNumber(string nameAndNumber);
+        void RemoveNameAndNumber(string nameAndNumber);
 
-        public void ReplaceNumberAndName(string nameAndNumber);
+        void ReplaceNumberAndName(string nameAndNumber);
 
-        public string ReadFile();
+        string ReadFile();
 
 
     }
