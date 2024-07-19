@@ -1,13 +1,10 @@
-﻿using PhoneBookWithFile.Services;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-
 namespace PhoneBookWithFile.Services
 {
-    internal class FileService : IFileService
+    internal class FileService : IFilService
     {
         private const string filePath = "../../../phoneBook.txt";
         private ILoggingService loggingService;
@@ -19,9 +16,14 @@ namespace PhoneBookWithFile.Services
             EnsureFileExists();
         }
 
-        public void ClearFile()
+        private static void EnsureFileExists()
         {
-            File.WriteAllText(filePath, string.Empty);
+            bool isFilePresent = File.Exists(filePath);
+
+            if (isFilePresent is false)
+            {
+                File.Create(filePath).Close();
+            }
         }
 
         public string AddNameAndNumber(string nameAndNumber)
@@ -46,26 +48,10 @@ namespace PhoneBookWithFile.Services
             AddNameAndNumber(nameAndNumber);
         }
 
-        public string ReadFile()
-        {
-            string readText = File.ReadAllText(filePath);
-            Console.WriteLine(readText);
-            
-            return readText;
-        }
-        private static void EnsureFileExists()
-        {
-            bool isFilePresent = File.Exists(filePath);
+        
+    }
 
-            if (isFilePresent is false)
-            {
-                File.Create(filePath).Close();
-            }
-        }
-
-        void IFileService.AddName(string name)
-        {
-            throw new NotImplementedException();
-        }
+    internal interface IFilService
+    {
     }
 }
