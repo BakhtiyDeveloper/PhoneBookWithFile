@@ -35,6 +35,11 @@ namespace PhoneBookWithFile.Services
             return nameAndNumber;
         }
 
+        public void ClearFile()
+        {
+            File.WriteAllText(filePath, string.Empty);
+        }
+
         public string ReadFile()
         {
             throw new NotImplementedException();
@@ -54,6 +59,9 @@ namespace PhoneBookWithFile.Services
             AddNameAndNumber(nameAndNumber);
         }
 
-        
+        void IFileService.AddNameAndNumber(string nameAndNumber)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

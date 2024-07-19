@@ -10,6 +10,10 @@
 
         string ReadFile();
 
+        void ClearFile();
+
+
+
 
     }
 }
