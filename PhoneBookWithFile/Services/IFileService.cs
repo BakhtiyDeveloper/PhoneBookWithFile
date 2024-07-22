@@ -11,9 +11,5 @@
         string ReadFile();
 
         void ClearFile();
-
-
-
-
     }
 }
