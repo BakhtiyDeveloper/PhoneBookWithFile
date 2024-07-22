@@ -20,7 +20,6 @@ namespace PhoneBookWithFile
                 {
                     logger.LoggerMenu();
                     string userChoose = Console.ReadLine();
-
                     
                     switch (userChoose)
                     {
