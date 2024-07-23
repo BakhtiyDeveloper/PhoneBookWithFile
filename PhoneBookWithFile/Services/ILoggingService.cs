@@ -2,6 +2,8 @@
 {
     internal interface ILoggingService
     {
+        void LogInformationMenu();
+
         void LogInformation(string message);
 
         void LogErrorInformation(string message);

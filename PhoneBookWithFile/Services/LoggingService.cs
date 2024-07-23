@@ -23,6 +23,16 @@ namespace PhoneBookWithFile.Services
             return Console.ReadLine();
         }
 
+        public void LogInformationMenu()
+        {
+            Console.WriteLine("-'1'- Add a contact");
+            Console.WriteLine("-'2'- Remove a contact");
+            Console.WriteLine("-'3'- Read all contact");
+            Console.WriteLine("-'4'- Search all contact");
+            Console.WriteLine("-'5'- Clear all contact");
+            Console.WriteLine("-'6'- EXIT");
+        }
+
         public void LogInformationTheProgress(string message)
         {
             Console.WriteLine($"{message} opetation completed....");

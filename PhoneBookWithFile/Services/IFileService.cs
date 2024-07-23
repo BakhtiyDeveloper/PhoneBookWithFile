@@ -12,7 +12,7 @@
 
         void RemoveContactFromTxtFile(string name, string phoneNumber);
 
-        void RemoveContactFromJsontFile(string name, string phoneNumber);
+        void RemoveContactFromJsonFile(string name, string phoneNumber);
 
         void ReadContactFromTxtFile();
 

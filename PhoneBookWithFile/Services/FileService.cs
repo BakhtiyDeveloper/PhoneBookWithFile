@@ -111,20 +111,6 @@ namespace PhoneBookWithFile.Services
             }
         }
 
-        public void ClearAllContactFromTxtFile()
-        {
-            File.WriteAllText(txtFilePath, string.Empty);
-
-            loggingService.LogInformationTheProgress("Clear contact");
-        }
-
-        public void ClearAllContactFromJsonFile()
-        {
-            File.WriteAllText(jsonFilePath, string.Empty);
-
-            loggingService.LogInformationTheProgress("Clear contact");
-        }
-
         public void RemoveContactFromTxtFile(string name, string phoneNumber)
         {
             List<string> linesByTxtFile = File.ReadAllLines(txtFilePath).ToList();
@@ -138,7 +124,7 @@ namespace PhoneBookWithFile.Services
             loggingService.LogInformationTheProgress("Remove contact");
         }
 
-        public void RemoveContactFromJsontFile(string name, string phoneNumber)
+        public void RemoveContactFromJsonFile(string name, string phoneNumber)
         {
             List<string> linesByJsonFile = File.ReadAllLines(jsonFilePath).ToList();
 
@@ -149,6 +135,20 @@ namespace PhoneBookWithFile.Services
             File.WriteAllLines(txtFilePath, linesByJsonFile);
 
             loggingService.LogInformationTheProgress("Remove contact");
+        }
+
+        public void ClearAllContactFromTxtFile()
+        {
+            File.WriteAllText(txtFilePath, string.Empty);
+
+            loggingService.LogInformationTheProgress("Clear contact");
+        }
+
+        public void ClearAllContactFromJsonFile()
+        {
+            File.WriteAllText(jsonFilePath, string.Empty);
+
+            loggingService.LogInformationTheProgress("Clear contact");
         }
 
         public void SearchContactFromTxtFile(string name, string phoneNumber)
