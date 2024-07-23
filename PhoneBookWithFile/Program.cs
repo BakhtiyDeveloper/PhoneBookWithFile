@@ -19,6 +19,10 @@ namespace PhoneBookWithFile
 
             fileService.AddContactToJsonFile(name, phoneNumber);
 
+            fileService.ReadContactFromTxtFile();
+
+            fileService.ReadContactFromJsonFile();
+
             Console.ReadLine();
         }
     }

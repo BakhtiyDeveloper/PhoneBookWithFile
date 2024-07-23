@@ -42,41 +42,63 @@ namespace PhoneBookWithFile.Services
 
         public string AddContactToTxtFile(string name, string phoneNumber)
         {
-            File.AppendAllText(txtFilePath, name + phoneNumber);
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(phoneNumber)) 
+            {
+                loggingService.LogErrorInformation("The name or phone number was entered incorrectly." +
+                                                   "Enter the correct values.");
 
-            return name + phoneNumber;
+                return " ";
+            }
+            else 
+            {
+                File.AppendAllText(txtFilePath, name + " " + phoneNumber + "\n");
+
+                return name + " " + phoneNumber + "\n";
+            }
         }
 
         public string AddContactToJsonFile(string name, string phoneNumber)
         {
-            File.AppendAllText(jsonFilePath, name + phoneNumber);
+            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(phoneNumber))
+            {
+                loggingService.LogErrorInformation("The name or phone number was entered incorrectly." +
+                                                   "Enter the correct values.");
 
-            return name + phoneNumber;
+                return " ";
+            }
+            else
+            {
+                File.AppendAllText(jsonFilePath, name + " " + phoneNumber + "\n");
+
+                return name + " " + phoneNumber + "\n";
+            }
         }
 
-        //public void ReadContactFromTxtFile()
-        //{
-        //    loggingService.LogInformation("======== Phonbook.txt file ========");
-        //    string[] contactsForTxtFile = File.ReadAllLines(txtFilePath);
+        public void ReadContactFromTxtFile()
+        {
+            loggingService.LogInformation("\n======== Phonbook.txt file ========");
+            string[] contactsForTxtFile = File.ReadAllLines(txtFilePath);
 
-        //    foreach (string contact in contactsForTxtFile)
-        //    {
-        //        string[] stringsForTxtFile = contact.Split("/");
-        //        loggingService.LogInformation($"Name: {stringsForTxtFile[0]} Number: {stringsForTxtFile[1]}");
-        //    }
-        //}
+            foreach (string contact in contactsForTxtFile)
+            {
+                string[] stringsForTxtFile = contact.Split(" ");
+                loggingService.LogInformation($"Name: {stringsForTxtFile[0]}, Number: {stringsForTxtFile[1]}");
+            }
+        }
 
-        //public void ReadContactFromJsonFile()
-        //{
-        //    loggingService.LogInformation("======== Phonbook.json file ========");
-        //    string[] contactsForJsonFile = File.ReadAllLines(jsonFilePath);
+        public void ReadContactFromJsonFile()
+        {
 
-        //    foreach (string contact in contactsForJsonFile)
-        //    {
-        //        string[] stringsForJsonFile = contact.Split("/");
-        //        loggingService.LogInformation($"Name: {stringsForJsonFile[0]} Number: {stringsForJsonFile[1]}");
-        //    }
-        //}
+            loggingService.LogInformation("\n======== Phonbook.json file ========");
+            string[] contactsForJsonFile = File.ReadAllLines(jsonFilePath);
+
+            foreach (string contact in contactsForJsonFile)
+            {
+                string[] stringsForJsonFile = contact.Split(" ");
+                loggingService.LogInformation($"Name: {stringsForJsonFile[0]}, Number: {stringsForJsonFile[1]} ");
+
+            }
+        }
 
 
 

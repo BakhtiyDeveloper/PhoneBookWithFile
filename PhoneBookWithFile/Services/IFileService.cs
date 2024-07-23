@@ -2,9 +2,9 @@
 {
     internal interface IFileService
     {
-        //void ReadContactFromTxtFile();
+        void ReadContactFromTxtFile();
 
-        //void ReadContactFromJsonFile();
+        void ReadContactFromJsonFile();
 
         string AddContactToTxtFile(string name, string phoneNumber);
 
