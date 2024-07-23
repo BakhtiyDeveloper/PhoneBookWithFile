@@ -1,67 +1,46 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System;
+
 
 namespace PhoneBookWithFile.Services
 {
     internal class FileService : IFileService
     {
-        private const string filePath = "../../../phoneBook.txt";
+        private const string txtFilePath = "../../../phoneBook.txt";
+        private const string jsonFilePath = "../../../phoneBook.json";
+
         private ILoggingService loggingService;
 
         public FileService()
         {
             this.loggingService = new LoggingService();
 
-            EnsureFileExists();
+            EnsureTxtFileExists();
+            EnsureJsonFileExists();
         }
 
-        private static void EnsureFileExists()
+        private static void EnsureTxtFileExists()
         {
-            bool isFilePresent = File.Exists(filePath);
+            bool isFilePresent = File.Exists(txtFilePath);
 
             if (isFilePresent is false)
             {
-                File.Create(filePath).Close();
+                File.Create(txtFilePath).Close();
             }
+
+            Console.WriteLine("Phonebook txt yaratildi!!!");
         }
 
-        public string AddNameAndNumber(string nameAndNumber)
+        private static void EnsureJsonFileExists()
         {
-            string line = "\n";
-            File.AppendAllText(filePath, nameAndNumber + line);
+            bool isFilePresent = File.Exists(jsonFilePath);
 
-            return nameAndNumber;
-        }
+            if (isFilePresent is false)
+            {
+                File.Create(jsonFilePath).Close();
+            }
 
-        public void ClearFile()
-        {
-            File.WriteAllText(filePath, string.Empty);
-        }
-
-        public string ReadFile()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveNameAndNumber(string nameAndNumber)
-        {
-            List<string> lines = File.ReadAllLines(filePath).ToList();
-            string lineToRemove = nameAndNumber;
-            lines.Remove(lineToRemove);
-            File.WriteAllLines(filePath, lines);
-        }
-
-        public void ReplaceNumberAndName(string nameAndNumber)
-        {
-            RemoveNameAndNumber(nameAndNumber);
-            AddNameAndNumber(nameAndNumber);
-        }
-
-        void IFileService.AddNameAndNumber(string nameAndNumber)
-        {
-            throw new NotImplementedException();
+            Console.WriteLine("Phonebook json yaratildi!!!");
         }
     }
 }
