@@ -7,32 +7,46 @@ namespace PhoneBookWithFile
     {
         static void Main(string[] args)
         {
-            IFileService fileService = new FileService();
+            IUserInterfaceService userservice = new UserInterfaceService();
             ILoggingService loggingService = new LoggingService();
-                        
-            
 
-            
+            loggingService.LogInformation("========== Welcome to our project ==========");
+            loggingService.LogInformation("In this project, you can work with contacts in the Phone book file");
+            loggingService.LogInformation("=======================================================\n\n");
 
-            
+            loggingService.LogInformation("========== We have two types of files ==========");
+            loggingService.LogInformation("Which file you want to work with");
+            loggingService.LogInformation("-'1'- \"Phone book\" txt file!");
+            loggingService.LogInformation("-'2'- \"Phone book\" json file!");
+            loggingService.LogInformation("-'3'- EXIT");
+            loggingService.LogInformation("=======================================================\n\n");
 
-            
+            string userChoose = loggingService.LogInformationAndGetUserValue("Choose one of the files: ");
 
-            
+            bool isExit = true;
 
-            
+            while (isExit) 
+            {
+                Console.Clear();
+                switch (userChoose) 
+                {
+                    case "1":
+                        userservice.UseWithTxtFile();
+                        break;
 
-            
+                    case "2":
+                        userservice.UseWithJsonFile();
+                        break;
 
-            
-
-            
-
-            
-
-            
-
-            Console.ReadLine();
+                    case "3":
+                        loggingService.LogInformation("Thank you for using our project");
+                        isExit = false;
+                        break;
+                    default:
+                        loggingService.LogErrorInformation("You pressed the wrong button!");
+                        break;
+                }
+            }
         }
     }
 }

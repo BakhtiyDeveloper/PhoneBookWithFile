@@ -43,7 +43,9 @@ namespace PhoneBookWithFile.Services
         }
 
         public string AddContactToTxtFile(string name, string phoneNumber)
-        {
+        {   
+            Console.Clear();
+            loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(phoneNumber)) 
             {
                 loggingService.LogErrorInformation("The name or phone number was entered incorrectly." +
@@ -53,9 +55,8 @@ namespace PhoneBookWithFile.Services
             }
             else 
             {
-                loggingService.LogInformationTheProgress("Add contact");
-
                 File.AppendAllText(txtFilePath, name + " " + phoneNumber + "\n");
+                loggingService.LogInformationTheProgress("Add contact");
 
                 return name + " " + phoneNumber + "\n";
             }
@@ -97,7 +98,6 @@ namespace PhoneBookWithFile.Services
 
         public void ReadContactFromJsonFile()
         {
-
             loggingService.LogInformation("\n======== Phonbook.json file ========");
             string[] contactsForJsonFile = File.ReadAllLines(jsonFilePath);
 

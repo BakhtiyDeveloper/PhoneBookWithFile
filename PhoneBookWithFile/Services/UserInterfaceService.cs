@@ -16,18 +16,21 @@ namespace PhoneBookWithFile.Services
             {
                 loggingService.LogInformationMenu();
 
-                string userChoose = loggingService.LogInformationAndGetUserValue("Choose one from the menu: ");
-
+                string userInterfaceChooseForTxtFile = loggingService.LogInformationAndGetUserValue("Choose one from the menu: ");
+                
                 string name = loggingService.LogInformationAndGetUserValue("Enter your name: ");
                 string phoneNumber = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
+                                
 
-                switch (userChoose)
+                switch (userInterfaceChooseForTxtFile)
                 {
+                    
                     case "1":
                         fileService.AddContactToTxtFile(name, phoneNumber);
                         break;
 
                     case "2":
+                        loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
                         fileService.RemoveContactFromTxtFile(name, phoneNumber);
                         break;
 
@@ -36,6 +39,7 @@ namespace PhoneBookWithFile.Services
                         break;
 
                     case "4":
+                        loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
                         fileService.SearchContactFromTxtFile(name, phoneNumber);
                         break;
 
@@ -48,7 +52,7 @@ namespace PhoneBookWithFile.Services
                         break;
 
                     default:
-                        loggingService.LogInformation("You pressed the wrong button!");
+                        loggingService.LogErrorInformation("You pressed the wrong button!");
                         break;
                 }
             }
@@ -62,18 +66,20 @@ namespace PhoneBookWithFile.Services
             {
                 loggingService.LogInformationMenu();
 
-                string userChoose = loggingService.LogInformationAndGetUserValue("Choose one from the menu: ");
+                string userInterfaceChooseForJsonFile = loggingService.LogInformationAndGetUserValue("Choose one from the menu: ");
 
                 string name = loggingService.LogInformationAndGetUserValue("Enter your name: ");
                 string phoneNumber = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
 
-                switch (userChoose)
+                switch (userInterfaceChooseForJsonFile)
                 {
                     case "1":
+                        loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
                         fileService.AddContactToJsonFile(name, phoneNumber);
                         break;
 
                     case "2":
+                        loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
                         fileService.RemoveContactFromJsonFile(name, phoneNumber);
                         break;
 
@@ -82,6 +88,7 @@ namespace PhoneBookWithFile.Services
                         break;
 
                     case "4":
+                        loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
                         fileService.SearchContactFromJsontFile(name, phoneNumber);
                         break;
 
@@ -94,7 +101,7 @@ namespace PhoneBookWithFile.Services
                         break;
 
                     default:
-                        loggingService.LogInformation("You pressed the wrong button!");
+                        loggingService.LogErrorInformation("You pressed the wrong button!");
                         break;
                 }
             }
