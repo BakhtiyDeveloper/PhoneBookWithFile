@@ -2,12 +2,26 @@
 {
     internal interface IFileService
     {
+        string AddContactToTxtFile(string name, string phoneNumber);
+
+        string AddContactToJsonFile(string name, string phoneNumber);
+
+        void SearchContactFromTxtFile(string name, string phoneNumber);
+
+        void SearchContactFromJsontFile(string name, string phoneNumber);
+
+        void RemoveContactFromTxtFile(string name, string phoneNumber);
+
+        void RemoveContactFromJsontFile(string name, string phoneNumber);
+
         void ReadContactFromTxtFile();
 
         void ReadContactFromJsonFile();
 
-        string AddContactToTxtFile(string name, string phoneNumber);
+        void ClearAllContactFromTxtFile();
 
-        string AddContactToJsonFile(string name, string phoneNumber);
+        void ClearAllContactFromJsonFile();
+
+
     }
 }

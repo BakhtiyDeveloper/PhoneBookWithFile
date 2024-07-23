@@ -23,6 +23,14 @@ namespace PhoneBookWithFile
 
             fileService.ReadContactFromJsonFile();
 
+            fileService.RemoveContactFromTxtFile(name, phoneNumber);
+
+            fileService.RemoveContactFromJsontFile(name, phoneNumber);
+
+            fileService.ClearAllContactFromTxtFile();
+
+            fileService.ClearAllContactFromJsonFile();
+
             Console.ReadLine();
         }
     }
