@@ -5,5 +5,10 @@
         void LogInformation(string message);
 
         void LogErrorInformation(string message);
+
+        void LogInformationTheProgress(string message);
+
+        string LogInformationAndGetUserValue(string message);
+
     }
 }

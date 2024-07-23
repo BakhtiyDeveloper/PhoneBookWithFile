@@ -53,6 +53,8 @@ namespace PhoneBookWithFile.Services
             }
             else 
             {
+                loggingService.LogInformationTheProgress("Add contact");
+
                 File.AppendAllText(txtFilePath, name + " " + phoneNumber + "\n");
 
                 return name + " " + phoneNumber + "\n";
@@ -70,6 +72,8 @@ namespace PhoneBookWithFile.Services
             }
             else
             {
+                loggingService.LogInformationTheProgress("Add contact");
+
                 File.AppendAllText(jsonFilePath, name + " " + phoneNumber + "\n");
 
                 return name + " " + phoneNumber + "\n";
@@ -84,6 +88,9 @@ namespace PhoneBookWithFile.Services
             foreach (string contact in contactsForTxtFile)
             {
                 string[] stringsForTxtFile = contact.Split(" ");
+
+                loggingService.LogInformationTheProgress("Read contact");
+
                 loggingService.LogInformation($"Name: {stringsForTxtFile[0]}, Number: {stringsForTxtFile[1]}");
             }
         }
@@ -97,19 +104,25 @@ namespace PhoneBookWithFile.Services
             foreach (string contact in contactsForJsonFile)
             {
                 string[] stringsForJsonFile = contact.Split(" ");
-                loggingService.LogInformation($"Name: {stringsForJsonFile[0]}, Number: {stringsForJsonFile[1]} ");
 
+                loggingService.LogInformationTheProgress("Read contact");
+
+                loggingService.LogInformation($"Name: {stringsForJsonFile[0]}, Number: {stringsForJsonFile[1]} ");
             }
         }
 
         public void ClearAllContactFromTxtFile()
         {
             File.WriteAllText(txtFilePath, string.Empty);
+
+            loggingService.LogInformationTheProgress("Clear contact");
         }
 
         public void ClearAllContactFromJsonFile()
         {
             File.WriteAllText(jsonFilePath, string.Empty);
+
+            loggingService.LogInformationTheProgress("Clear contact");
         }
 
         public void RemoveContactFromTxtFile(string name, string phoneNumber)
@@ -121,6 +134,8 @@ namespace PhoneBookWithFile.Services
             linesByTxtFile.Remove(lineToRemoveByTxtFile);
 
             File.WriteAllLines(txtFilePath, linesByTxtFile);
+
+            loggingService.LogInformationTheProgress("Remove contact");
         }
 
         public void RemoveContactFromJsontFile(string name, string phoneNumber)
@@ -132,6 +147,8 @@ namespace PhoneBookWithFile.Services
             linesByJsonFile.Remove(lineToRemoveByJsonFile);
 
             File.WriteAllLines(txtFilePath, linesByJsonFile);
+
+            loggingService.LogInformationTheProgress("Remove contact");
         }
 
         public void SearchContactFromTxtFile(string name, string phoneNumber)
@@ -146,6 +163,7 @@ namespace PhoneBookWithFile.Services
                 
                 if (stringsForTxtFile[0] == name && stringsForTxtFile[1] == phoneNumber) 
                 {
+                    loggingService.LogInformationTheProgress("Search contact");
                     loggingService.LogInformation("=== The name and phone number you searched for ===");
                     loggingService.LogInformation($"Name: {stringsForTxtFile[0]}, Number: {stringsForTxtFile[1]}");
                 }
@@ -153,10 +171,7 @@ namespace PhoneBookWithFile.Services
                 {
                     loggingService.LogErrorInformation("The name or phone number you searched does not exit!!!");
                 }
-
             }
-
-
         }
 
         public void SearchContactFromJsontFile(string name, string phoneNumber)
@@ -171,6 +186,7 @@ namespace PhoneBookWithFile.Services
 
                 if (stringsForJsonFile[0] == name && stringsForJsonFile[1] == phoneNumber)
                 {
+                    loggingService.LogInformationTheProgress("Search contact");
                     loggingService.LogInformation("=== The name and phone number you searched for ===");
                     loggingService.LogInformation($"Name: {stringsForJsonFile[0]}, Number: {stringsForJsonFile[1]}");
                 }
