@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-
 namespace PhoneBookWithFile.Services
 {
     internal class FileService : IFileService
@@ -58,6 +57,7 @@ namespace PhoneBookWithFile.Services
             else 
             {
                 File.AppendAllText(txtFilePath, name + " " + phoneNumber + "\n");
+                
                 return $"{name} {phoneNumber} \n";                
             }
         }
@@ -76,8 +76,6 @@ namespace PhoneBookWithFile.Services
             }
             else
             {
-                loggingService.LogInformationTheProgress("Add contact");
-
                 File.AppendAllText(jsonFilePath, name + " " + phoneNumber + "\n");
 
                 return $"{name} {phoneNumber} \n";
@@ -89,7 +87,6 @@ namespace PhoneBookWithFile.Services
             Console.Clear();
             loggingService.LogInformation("\n======== Phonbook.txt file ========");
             loggingService.LogInformation("-'3'- We have selected to ====Read a contact====");
-            
             string[] contactsForTxtFile = File.ReadAllLines(txtFilePath);
 
             foreach (string contact in contactsForTxtFile)
@@ -110,8 +107,6 @@ namespace PhoneBookWithFile.Services
             foreach (string contact in contactsForJsonFile)
             {
                 string[] stringsForJsonFile = contact.Split(" ");
-
-                loggingService.LogInformationTheProgress("Read contact");
 
                 loggingService.LogInformation($"Name: {stringsForJsonFile[0]}, Number: {stringsForJsonFile[1]} ");
             }
@@ -135,7 +130,7 @@ namespace PhoneBookWithFile.Services
         {
             Console.Clear();
             loggingService.LogInformation("\n======== Phonbook.json file ========");
-            loggingService.LogInformation("-'2'- We have selected to ====Revove a contact====")
+            loggingService.LogInformation("-'2'- We have selected to ====Revove a contact====");
             List<string> linesByJsonFile = File.ReadAllLines(jsonFilePath).ToList();
 
             string lineToRemoveByJsonFile = name + phoneNumber;
@@ -143,8 +138,6 @@ namespace PhoneBookWithFile.Services
             linesByJsonFile.Remove(lineToRemoveByJsonFile);
 
             File.WriteAllLines(txtFilePath, linesByJsonFile);
-
-            loggingService.LogInformationTheProgress("Remove contact");
         }
 
         public void ClearAllContactFromTxtFile()

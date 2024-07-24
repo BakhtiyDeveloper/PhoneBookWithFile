@@ -17,9 +17,9 @@ namespace PhoneBookWithFile.Services
                 loggingService.LogInformation("You are working with the phonebook.txt file!!!!\n");
                 loggingService.LogInformationMenu();
 
-                string userInterfaceChooseForTxtFile = loggingService.LogInformationAndGetUserValue("\nChoose one from the menu: ");
-                
                 loggingService.LogInformation("\nWarning : write name and number format correctly to add: (Sherzod +998918285636)\n");
+                
+                string userInterfaceChooseForTxtFile = loggingService.LogInformationAndGetUserValue("\nChoose one from the menu: ");
                 
                 switch (userInterfaceChooseForTxtFile)
                 {
@@ -86,23 +86,24 @@ namespace PhoneBookWithFile.Services
             {
                 loggingService.LogInformation("You are working with the phonebook.json file!!!!\n");
                 loggingService.LogInformationMenu();
-
+                
+                loggingService.LogInformation("\nWarning : write name and number format correctly to add: (Sherzod +998918285636)\n");
+                
                 string userInterfaceChooseForJsonFile = loggingService.LogInformationAndGetUserValue("Choose one from the menu: ");
                 
-                loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
-
                 switch (userInterfaceChooseForJsonFile)
                 {
                     case "1":
-                        string nameForAddContact = loggingService.LogInformationAndGetUserValue("Enter your name: ");
-                        string phoneNumberForAddContact = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
-                        fileService.AddContactToJsonFile(nameForAddContact, phoneNumberForAddContact);
+                        string nameForAddContactJson = loggingService.LogInformationAndGetUserValue("Enter your name: ");
+                        string phoneNumberForAddContactJson = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
+                        fileService.AddContactToJsonFile(nameForAddContactJson, phoneNumberForAddContactJson);
                         loggingService.LogInformationTheProgress("Add contact");
                         break;
 
                     case "2":
-                        string nameForRemoveContact = loggingService.LogInformationAndGetUserValue("Enter your name: ");
-                        string phoneNumberForRemoveContact = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
+                        string nameForRemoveContactJson = loggingService.LogInformationAndGetUserValue("Enter your name: ");
+                        string phoneNumberForRemoveContactJson = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
+                        fileService.RemoveContactFromJsonFile(nameForRemoveContactJson, phoneNumberForRemoveContactJson);
                         loggingService.LogInformationTheProgress("Remove contact");
                         break;
 
@@ -112,9 +113,9 @@ namespace PhoneBookWithFile.Services
                         break;
 
                     case "4":
-                        string nameForSearchContact = loggingService.LogInformationAndGetUserValue("Enter your name: ");
-                        string phoneNumberForSearchContact = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
-                        fileService.SearchContactFromJsontFile(nameForSearchContact, phoneNumberForSearchContact);
+                        string nameForSearchContactJson = loggingService.LogInformationAndGetUserValue("Enter your name: ");
+                        string phoneNumberForSearchContactJson = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
+                        fileService.SearchContactFromJsontFile(nameForSearchContactJson, phoneNumberForSearchContactJson);
                         break;
 
                     case "5":
