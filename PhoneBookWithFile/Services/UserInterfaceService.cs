@@ -14,44 +14,65 @@ namespace PhoneBookWithFile.Services
 
             while (isExitByTxtFile)
             {
+                loggingService.LogInformation("You are working with the phonebook.txt file!!!!\n");
                 loggingService.LogInformationMenu();
 
-                string userInterfaceChooseForTxtFile = loggingService.LogInformationAndGetUserValue("Choose one from the menu: ");
+                string userInterfaceChooseForTxtFile = loggingService.LogInformationAndGetUserValue("\nChoose one from the menu: ");
                 
-                string name = loggingService.LogInformationAndGetUserValue("Enter your name: ");
-                string phoneNumber = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
-                                
-
+                loggingService.LogInformation("\nWarning : write name and number format correctly to add: (Sherzod +998918285636)\n");
+                
                 switch (userInterfaceChooseForTxtFile)
                 {
-                    
                     case "1":
-                        fileService.AddContactToTxtFile(name, phoneNumber);
+                        string nameForAddContact = loggingService.LogInformationAndGetUserValue("Enter your name: ");
+                        string phoneNumberForAddContact = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
+                        fileService.AddContactToTxtFile(nameForAddContact, phoneNumberForAddContact);
+                        loggingService.LogInformationTheProgress("Add contact");
                         break;
 
                     case "2":
-                        loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
-                        fileService.RemoveContactFromTxtFile(name, phoneNumber);
+                        string nameForRemoveContact = loggingService.LogInformationAndGetUserValue("Enter your name: ");
+                        string phoneNumberForRemoveContact = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
+                        fileService.RemoveContactFromTxtFile(nameForRemoveContact, phoneNumberForRemoveContact);
+                        loggingService.LogInformationTheProgress("Remove contact");
                         break;
 
                     case "3":
+                        Console.Clear();
                         fileService.ReadContactFromTxtFile();
+                        loggingService.LogInformationTheProgress("Read contact");
                         break;
 
                     case "4":
-                        loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
-                        fileService.SearchContactFromTxtFile(name, phoneNumber);
+                        Console.Clear();
+                        string nameForSearchContact = loggingService.LogInformationAndGetUserValue("Enter your name: ");
+                        string phoneNumberForSearchContact = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
+                        fileService.SearchContactFromTxtFile(nameForSearchContact, phoneNumberForSearchContact);
                         break;
 
                     case "5":
-                        fileService.ClearAllContactFromTxtFile();
+                        Console.Clear();
+                        loggingService.LogInformation("Do you want to delete all contacts in the phone book txt file!!! ==y/n==");
+                        string answer = Console.ReadLine();
+
+                        if (answer == "y" || answer == "Y") 
+                        {
+                           fileService.ClearAllContactFromTxtFile();
+                        }
+                        else 
+                        {
+                            isExitByTxtFile = false;
+                        }     
                         break;
 
                     case "6":
+                        Console.Clear();
+                        loggingService.LogInformation("-'6'- We have selected to ====Exit to program====");
                         isExitByTxtFile = false;
                         break;
 
                     default:
+                        Console.Clear();
                         loggingService.LogErrorInformation("You pressed the wrong button!");
                         break;
                 }

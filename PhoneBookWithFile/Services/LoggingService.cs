@@ -35,7 +35,7 @@ namespace PhoneBookWithFile.Services
 
         public void LogInformationTheProgress(string message)
         {
-            Console.WriteLine($"{message} opetation completed....");
+            Console.WriteLine($"\n{message} opetation completed....\n");
         }
     }
 }

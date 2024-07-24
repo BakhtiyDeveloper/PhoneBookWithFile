@@ -27,18 +27,20 @@ namespace PhoneBookWithFile
 
             while (isExit) 
             {
-                Console.Clear();
                 switch (userChoose) 
                 {
                     case "1":
+                        Console.Clear();
                         userservice.UseWithTxtFile();
                         break;
 
                     case "2":
+                        Console.Clear();
                         userservice.UseWithJsonFile();
                         break;
 
                     case "3":
+                        Console.Clear();
                         loggingService.LogInformation("Thank you for using our project");
                         isExit = false;
                         break;
