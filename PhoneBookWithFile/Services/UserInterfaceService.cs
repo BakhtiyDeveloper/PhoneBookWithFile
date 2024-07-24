@@ -38,13 +38,11 @@ namespace PhoneBookWithFile.Services
                         break;
 
                     case "3":
-                        Console.Clear();
                         fileService.ReadContactFromTxtFile();
                         loggingService.LogInformationTheProgress("Read contact");
                         break;
 
                     case "4":
-                        Console.Clear();
                         string nameForSearchContact = loggingService.LogInformationAndGetUserValue("Enter your name: ");
                         string phoneNumberForSearchContact = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
                         fileService.SearchContactFromTxtFile(nameForSearchContact, phoneNumberForSearchContact);
@@ -68,6 +66,7 @@ namespace PhoneBookWithFile.Services
                     case "6":
                         Console.Clear();
                         loggingService.LogInformation("-'6'- We have selected to ====Exit to program====");
+                        loggingService.LogInformation("Thank you for using our project");
                         isExitByTxtFile = false;
                         break;
 
@@ -85,39 +84,58 @@ namespace PhoneBookWithFile.Services
 
             while (isExitByJsonFile)
             {
+                loggingService.LogInformation("You are working with the phonebook.json file!!!!\n");
                 loggingService.LogInformationMenu();
 
                 string userInterfaceChooseForJsonFile = loggingService.LogInformationAndGetUserValue("Choose one from the menu: ");
-
-                string name = loggingService.LogInformationAndGetUserValue("Enter your name: ");
-                string phoneNumber = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
+                
+                loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
 
                 switch (userInterfaceChooseForJsonFile)
                 {
                     case "1":
-                        loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
-                        fileService.AddContactToJsonFile(name, phoneNumber);
+                        string nameForAddContact = loggingService.LogInformationAndGetUserValue("Enter your name: ");
+                        string phoneNumberForAddContact = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
+                        fileService.AddContactToJsonFile(nameForAddContact, phoneNumberForAddContact);
+                        loggingService.LogInformationTheProgress("Add contact");
                         break;
 
                     case "2":
-                        loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
-                        fileService.RemoveContactFromJsonFile(name, phoneNumber);
+                        string nameForRemoveContact = loggingService.LogInformationAndGetUserValue("Enter your name: ");
+                        string phoneNumberForRemoveContact = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
+                        loggingService.LogInformationTheProgress("Remove contact");
                         break;
 
                     case "3":
                         fileService.ReadContactFromJsonFile();
+                        loggingService.LogInformationTheProgress("Read contact");
                         break;
 
                     case "4":
-                        loggingService.LogInformation("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
-                        fileService.SearchContactFromJsontFile(name, phoneNumber);
+                        string nameForSearchContact = loggingService.LogInformationAndGetUserValue("Enter your name: ");
+                        string phoneNumberForSearchContact = loggingService.LogInformationAndGetUserValue("Enter your phone number: ");
+                        fileService.SearchContactFromJsontFile(nameForSearchContact, phoneNumberForSearchContact);
                         break;
 
                     case "5":
-                        fileService.ClearAllContactFromJsonFile();
+                        Console.Clear();
+                        loggingService.LogInformation("Do you want to delete all contacts in the phone book json file!!! ==y/n==");
+                        string answer = Console.ReadLine();
+
+                        if (answer == "y" || answer == "Y")
+                        {
+                            fileService.ClearAllContactFromJsonFile();
+                        }
+                        else
+                        {
+                            isExitByJsonFile = false;
+                        }                        
                         break;
 
                     case "6":
+                        Console.Clear();
+                        loggingService.LogInformation("-'6'- We have selected to ====Exit to program====");
+                        loggingService.LogInformation("Thank you for using our project");
                         isExitByJsonFile = false;
                         break;
 

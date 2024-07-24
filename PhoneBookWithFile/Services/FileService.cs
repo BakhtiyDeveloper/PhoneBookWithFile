@@ -64,6 +64,9 @@ namespace PhoneBookWithFile.Services
 
         public string AddContactToJsonFile(string name, string phoneNumber)
         {
+            Console.Clear();
+            loggingService.LogInformation("\n======== Phonbook.json file ========");
+            loggingService.LogInformation("-'1'- We have selevted to ====Add a contact====");
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(phoneNumber))
             {
                 loggingService.LogErrorInformation("The name or phone number was entered incorrectly." +
@@ -83,6 +86,7 @@ namespace PhoneBookWithFile.Services
 
         public void ReadContactFromTxtFile()
         {
+            Console.Clear();
             loggingService.LogInformation("\n======== Phonbook.txt file ========");
             loggingService.LogInformation("-'3'- We have selected to ====Read a contact====");
             
@@ -98,7 +102,9 @@ namespace PhoneBookWithFile.Services
 
         public void ReadContactFromJsonFile()
         {
+            Console.Clear();    
             loggingService.LogInformation("\n======== Phonbook.json file ========");
+            loggingService.LogInformation("-'3'- We have selected to ====Read a contact====");
             string[] contactsForJsonFile = File.ReadAllLines(jsonFilePath);
 
             foreach (string contact in contactsForJsonFile)
@@ -127,6 +133,9 @@ namespace PhoneBookWithFile.Services
 
         public void RemoveContactFromJsonFile(string name, string phoneNumber)
         {
+            Console.Clear();
+            loggingService.LogInformation("\n======== Phonbook.json file ========");
+            loggingService.LogInformation("-'2'- We have selected to ====Revove a contact====")
             List<string> linesByJsonFile = File.ReadAllLines(jsonFilePath).ToList();
 
             string lineToRemoveByJsonFile = name + phoneNumber;
@@ -140,7 +149,6 @@ namespace PhoneBookWithFile.Services
 
         public void ClearAllContactFromTxtFile()
         {
-            Console.Clear();
             loggingService.LogInformation("\n======== Phonbook.txt file ========");
             loggingService.LogInformation("-'5'- We have selected to ====Clear all contact====");
             
@@ -151,6 +159,9 @@ namespace PhoneBookWithFile.Services
 
         public void ClearAllContactFromJsonFile()
         {
+            loggingService.LogInformation("\n======== Phonbook.json file ========");
+            loggingService.LogInformation("-'5'- We have selected to ====Clear all contact====");
+
             File.WriteAllText(jsonFilePath, string.Empty);
 
             loggingService.LogInformationTheProgress("Clear contact");
@@ -158,6 +169,7 @@ namespace PhoneBookWithFile.Services
 
         public void SearchContactFromTxtFile(string name, string phoneNumber)
         {
+            Console.Clear(); 
             loggingService.LogInformation("\n======== Phonbook.txt file ========");
             loggingService.LogInformation("-'4'- We have selected to ====Search a contact====");
             
@@ -177,12 +189,16 @@ namespace PhoneBookWithFile.Services
                 {
                     loggingService.LogErrorInformation("The name or phone number you searched does not exit!!!");
                 }
+
+                loggingService.LogInformationTheProgress("Clear contact");
             }
         }
 
         public void SearchContactFromJsontFile(string name, string phoneNumber)
         {
+            Console.Clear();
             loggingService.LogInformation("\n======== Phonbook.json file ========");
+            loggingService.LogInformation("-'4'- We have selected to ====Search a contact====");
 
             string[] linesFromJsonFile = File.ReadAllLines(jsonFilePath);
 
@@ -200,6 +216,8 @@ namespace PhoneBookWithFile.Services
                 {
                     loggingService.LogErrorInformation("The name or phone number you searched does not exit!!!");
                 }
+
+                loggingService.LogInformationTheProgress("Clear contact");
             }
         }
     }
