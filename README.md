@@ -159,5 +159,5 @@ public void LoggerExcepion(string message)
 ```
 4. Result to GIF.
 
-![Result to GIF](/PhoneBookWithFile/Rusult%20to%20GIF/result%20gif.gif)
+![Result to GIF](/PhoneBookWithFile/Rusult%20to%20GIF/result%20gif2.gif)
 

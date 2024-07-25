@@ -124,6 +124,8 @@ namespace PhoneBookWithFile.Services
             linesByTxtFile.Remove(lineToRemoveByTxtFile);
 
             File.WriteAllLines(txtFilePath, linesByTxtFile);
+
+            loggingService.LogInformationTheProgress("Remove contact");
         }
 
         public void RemoveContactFromJsonFile(string name, string phoneNumber)
@@ -138,6 +140,8 @@ namespace PhoneBookWithFile.Services
             linesByJsonFile.Remove(lineToRemoveByJsonFile);
 
             File.WriteAllLines(txtFilePath, linesByJsonFile);
+
+            loggingService.LogInformationTheProgress("Remove contact");
         }
 
         public void ClearAllContactFromTxtFile()
@@ -177,13 +181,12 @@ namespace PhoneBookWithFile.Services
                     loggingService.LogInformationTheProgress("Search contact");
                     loggingService.LogInformation("=== The name and phone number you searched for ===");
                     loggingService.LogInformation($"Name: {stringsForTxtFile[0]}, Number: {stringsForTxtFile[1]}");
+                    loggingService.LogInformationTheProgress("Search contact");
                 }
                 else
                 {
-                    loggingService.LogErrorInformation("The name or phone number you searched does not exit!!!");
+                    loggingService.LogErrorInformation("The name or phone number you searched does not exists!!!");
                 }
-
-                loggingService.LogInformationTheProgress("Clear contact");
             }
         }
 
@@ -204,13 +207,12 @@ namespace PhoneBookWithFile.Services
                     loggingService.LogInformationTheProgress("Search contact");
                     loggingService.LogInformation("=== The name and phone number you searched for ===");
                     loggingService.LogInformation($"Name: {stringsForJsonFile[0]}, Number: {stringsForJsonFile[1]}");
+                    loggingService.LogInformationTheProgress("Search contact");
                 }
                 else
                 {
-                    loggingService.LogErrorInformation("The name or phone number you searched does not exit!!!");
+                    loggingService.LogErrorInformation("The name or phone number you searched does not exists!!!");
                 }
-
-                loggingService.LogInformationTheProgress("Clear contact");
             }
         }
     }
