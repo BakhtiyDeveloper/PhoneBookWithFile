@@ -1,163 +1,91 @@
 > # PhoneBookWithFile
 
-## This project creates a simple and convenient interface for managing the phone book. Users can add, delete, view and clear the file of their contacts.
+## This project creates a simple and convenient interface for managing the phone book. Users can contacts to add, read, remove, search and clear in a Text file or JSON file of their contacts.
 
 ---------------------------------------------------------------------------
 
-### Project structure.
+### Components
 
-#### The project consists of three main parts:
+* Program.cs: The main entry point of the application. It initializes the services and handles user input.
 
-1. `Program.cs` The main application part interacts with the user:
-    
-     * Creates `FileService` and `LoggingService` objects.
-     * Allows the user to select actions through a menu.
-     * Performs operations of adding, deleting, browsing, and clearing files based on the user's selection.
-     * Writes a log through `LoggingService` when any error occurs.
+* IUserInterfaceService: An interface that defines methods for interacting with the user.
+
+* UserInterfaceService.cs: Implements the `IUserInterfaceService` to provide functionality for managing contacts.
+
+* ILoggingService: An interface that defines methods for logging messages.
+
+* LoggingService.cs: Implements the `ILoggingService` to provide logging functionality.
+
 
 ```cs 
 '''
-FileService fileservice = new FileService();
-LoggingService logger = new LoggingService();
+IUserInterfaceService userservice = new UserInterfaceService();
+ILoggingService loggingService = new LoggingService();
 
-Console.WriteLine("Welcome to our Phone-Book project !!!");
+loggingService.LogInformation("========== Welcome to our project ==========");
+loggingService.LogInformation("In this project, you can work with contacts in the Phone book file");
+loggingService.LogInformation("=======================================================\n\n");
+
+loggingService.LogInformation("========== We have two types of files ==========");
+loggingService.LogInformation("Which file you want to work with");
+loggingService.LogInformation("-'1'- \"Phone book\" txt file!");
+loggingService.LogInformation("-'2'- \"Phone book\" json file!");
+loggingService.LogInformation("-'3'- EXIT");
+loggingService.LogInformation("=======================================================\n\n");
+
+string userChoose = loggingService.LogInformationAndGetUserValue("Choose one of the files: ");
 
 bool isExit = true;
-try
-{
-    while (isExit)
-    {
-        logger.LoggerMenu();
-        string userChoose = Console.ReadLine();
 
-        switch (userChoose)
-        {
-            case "1":
-                fileservice.ReadFile().ToList().Sort();
-                logger.LoggerForAdd();
-                string nameAndNumber = Console.ReadLine();
-                fileservice.AddNameAndNumber(nameAndNumber);
-                nameAndNumber = "";
-                break;
-            case "2":
-                fileservice.ReadFile().ToList().Sort();
-                logger.LoggerForRemove();
-                nameAndNumber = Console.ReadLine();
-                fileservice.RemoveNameAndNumber(nameAndNumber);
-                break;
-            case "3":
-                fileservice.ReadFile().ToList().Sort();
-                break;
-            case "4":
-                Console.WriteLine("Warning!!! Do you agree to delete the file: yes/no");
-                string chooseYesOrno = Console.ReadLine();
-                if (chooseYesOrno.ToLower() == "yes")
-                {
-                    fileservice.ClearFile();
-                }
-                else
-                {
-                    Console.Write("You did the right thing by not deleting the file!!!");
-                }
-                break;
-            case "5":
-                isExit = false;
-                break;
-                default:
-                Console.WriteLine("");
-                break;
-        }
+while (isExit) 
+{
+    switch (userChoose) 
+    {
+        case "1":
+            Console.Clear();
+            userservice.UseWithTxtFile();
+            break;
+
+        case "2":
+            Console.Clear();
+            userservice.UseWithJsonFile();
+            break;
+
+        case "3":
+            Console.Clear();
+            loggingService.LogInformation("Thank you for using our project");
+            isExit = false;
+            break;
+        default:
+            loggingService.LogErrorInformation("You pressed the wrong button!");
+            break;
     }
 }
-catch (Exception ex)
-{
-    logger.LoggerExcepion(ex.Message);
-}
 
 '''
 ```
 
-2. `FileService` Provides file handling services:
+### Usage
 
-    * `AddNameAndNumber` - add contacts to file.
-    * `ReadFile` - read contacts from a file.
-    * `RemoveNameAndNumber` - delete contacts from the file.
-    * `ClearFile` - clear file.
+1. Welcome Message: Displays a welcome message and brief description of the application's functionalities.
 
-```cs
-'''
-public string AddNameAndNumber(string nameAndNumber)
-{
-    string line = "\n";
-    File.AppendAllText(filePath, nameAndNumber + line);
+2. File Selection: Prompts the user to choose between working with a text file, a JSON file, or exiting the application.
 
-    return nameAndNumber;
-}
+3. File Operations:
 
-public string ReadFile()
-{
-    string readText = File.ReadAllText(filePath);
-    Console.WriteLine(readText);
+    * For text file operations, it calls `UseWithTxtFile` from `UserInterfaceService`
 
-    return readText;
-}
+    * For JSON file operations, it calls `UseWithJsonFile` from `UserInterfaceService`
 
-public void RemoveNameAndNumber(string nameAndNumber)
-{
-    List<string> lines = File.ReadAllLines(filePath).ToList();
-    string lineToRemove = nameAndNumber;
-    lines.Remove(lineToRemove);
-    File.WriteAllLines(filePath, lines);
-}
+4. Exit: Users can exit the application by selecting the exit option.
 
-public void ClearFile()
-{
-    File.WriteAllText(filePath, string.Empty);
-}
+### UserInterfaceService
 
-'''
-```
+* UseWithTxtFile(): Manages contacts in a text file, providing options to add, remove, read, search, and clear contacts.
 
-3. `LoggingSerice.cs` Provides logging and user interface management services:
+* UseWithJsonFile(): Manages contacts in a JSON file, providing similar options as for text files.
 
-    * `LoggerMenu` - Displays the main menu.
-    * `LoggerForAdd` - writes the contact add log.
-    * `LoggerForRemove` - writes contact removal log.
-    * `LoggerExcepion` - logs when an error occurs.
-
-```cs
-'''
-public void LoggerMenu()
-{
-    Console.WriteLine("what do you want to do");
-    Console.WriteLine("-'1'- Add a contact");
-    Console.WriteLine("-'2'- Remove a contact");
-    Console.WriteLine("-'3'- Show all contact");
-    Console.WriteLine("-'4'- Clear Phone-Book");
-    Console.WriteLine("-'5'- EXIT");            
-}
-
-public void LoggerForAdd()
-{
-    Console.WriteLine("Warning : write name and number format correctly to add: (Sherzod +998918285636)");
-    Console.Write("Enter name and number: ");
-}
-
-public void LoggerForRemove()
-{
-    Console.WriteLine("Warning : write name and number format correctly to delete: (Sherzod +998918285636)");
-    Console.Write("Enter name and number: ");
-}
-
-public void LoggerExcepion(string message)
-{
-    Console.WriteLine(message);
-    Console.WriteLine("Please run again");
-}
-
-'''
-```
-4. Result to GIF.
+### Result to GIF.
 
 ![Result to GIF](/PhoneBookWithFile/Rusult%20to%20GIF/result%20gif2.gif)
 
