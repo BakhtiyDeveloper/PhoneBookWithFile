@@ -61,7 +61,7 @@ namespace PhoneBookWithFile.Services
             {
                 string[] stringsForTxtFile = contact.Split(" ");
 
-                loggingService.LogInformation($"Name: {stringsForTxtFile[0]}, Number: {stringsForTxtFile[1]}");
+                loggingService.LogInformationForRead($"Name: {stringsForTxtFile[0]}, Number: {stringsForTxtFile[1]}");
             }
         }
         

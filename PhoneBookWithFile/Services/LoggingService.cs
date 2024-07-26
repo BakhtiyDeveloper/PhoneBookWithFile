@@ -23,6 +23,14 @@ namespace PhoneBookWithFile.Services
             return Console.ReadLine();
         }
 
+        public void LogInformationForRead(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
+
         public void LogInformationMenu()
         {
             Console.WriteLine("-'1'- Add a contact");
@@ -35,7 +43,9 @@ namespace PhoneBookWithFile.Services
 
         public void LogInformationTheProgress(string message)
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"\n{message} opetation completed....\n");
+            Console.ResetColor();
         }
     }
 }

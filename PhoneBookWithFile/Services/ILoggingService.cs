@@ -12,5 +12,7 @@
 
         string LogInformationAndGetUserValue(string message);
 
+        void LogInformationForRead(string message);
+
     }
 }

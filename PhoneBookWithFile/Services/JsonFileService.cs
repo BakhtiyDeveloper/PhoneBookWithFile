@@ -1,11 +1,10 @@
-﻿using PhoneBookWithFile.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 
-namespace PhoneBookWithFile
+namespace PhoneBookWithFile.Services
 {
     internal class JsonFileService : IFileService
     {
@@ -15,7 +14,7 @@ namespace PhoneBookWithFile
 
         public JsonFileService()
         {
-            this.loggingService = new LoggingService();
+            loggingService = new LoggingService();
 
             EnsureJsonFileExists();
         }
@@ -23,8 +22,9 @@ namespace PhoneBookWithFile
         public string AddContactToTxtFile(string name, string phoneNumber)
         {
             Console.Clear();
-            loggingService.LogInformation("\n======== Phonbook.json file ========");
+            loggingService.LogInformation("\n======== Phonbook.txt file ========");
             loggingService.LogInformation("-'1'- We have selevted to ====Add a contact====");
+
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(phoneNumber))
             {
                 loggingService.LogErrorInformation("The name or phone number was entered incorrectly." +
@@ -34,11 +34,8 @@ namespace PhoneBookWithFile
             }
             else
             {
-                var jsonContact = JsonSerializer.Serialize(name + phoneNumber);
-                var contact = new string[] { jsonContact };
+                File.AppendAllText(jsonFilePath, name + " " + phoneNumber + "\n");
 
-                File.AppendAllLines(jsonFilePath, contact);
-                
                 return $"{name} {phoneNumber} \n";
             }
         }
