@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 
 namespace PhoneBookWithFile
 {
@@ -15,10 +16,10 @@ namespace PhoneBookWithFile
         public JsonFileService()
         {
             this.loggingService = new LoggingService();
-                        
+
             EnsureJsonFileExists();
         }
-        
+
         public string AddContactToTxtFile(string name, string phoneNumber)
         {
             Console.Clear();
@@ -33,8 +34,11 @@ namespace PhoneBookWithFile
             }
             else
             {
-                File.AppendAllText(jsonFilePath, name + " " + phoneNumber + "\n");
+                var jsonContact = JsonSerializer.Serialize(name + phoneNumber);
+                var contact = new string[] { jsonContact };
 
+                File.AppendAllLines(jsonFilePath, contact);
+                
                 return $"{name} {phoneNumber} \n";
             }
         }

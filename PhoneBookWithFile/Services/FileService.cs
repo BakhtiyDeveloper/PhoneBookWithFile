@@ -46,7 +46,7 @@ namespace PhoneBookWithFile.Services
             {
                 File.AppendAllText(txtFilePath, name + " " + phoneNumber + "\n");
                 
-                return $"{name} {phoneNumber} \n";                
+                return $"{name} {phoneNumber} \n";
             }
         }
 
