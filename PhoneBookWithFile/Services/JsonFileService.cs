@@ -12,9 +12,9 @@ namespace PhoneBookWithFile.Services
 
         private ILoggingService loggingService;
 
-        public JsonFileService()
+        public JsonFileService(ILoggingService loggingService)
         {
-            loggingService = new LoggingService();
+            loggingService = loggingService;
 
             EnsureJsonFileExists();
         }

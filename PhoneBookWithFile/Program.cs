@@ -28,12 +28,12 @@ internal class Program
             {
                 case "1":
                     Console.Clear();
-                    fileService = new FileService();
+                    fileService = new FileService(loggingService);
                     break;
 
                 case "2":
                     Console.Clear();
-                    fileService = new JsonFileService();
+                    fileService = new JsonFileService(loggingService);
                     break;
 
                 case "3":

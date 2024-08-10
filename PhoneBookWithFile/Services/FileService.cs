@@ -11,9 +11,9 @@ namespace PhoneBookWithFile.Services
 
         private ILoggingService loggingService;
 
-        public FileService()
+        public FileService(ILoggingService loggingService)
         {
-            this.loggingService = new LoggingService();
+            this.loggingService = loggingService;
 
             EnsureTxtFileExists();
             
